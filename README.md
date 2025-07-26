@@ -13,7 +13,143 @@ screen.title("My Turtle Program")
 
 my_turtle = turtle.Turtle() # Create a Turtle object
 ```
+-------------------------------------------------------------
+# Screen class
 
+```python
+# Python Turtle Graphics: Screen Object Attributes and Methods
+
+The `turtle.Screen` object is the window or canvas where all the drawing by `turtle.Turtle` objects takes place. It controls the overall environment and interaction.
+
+## Creating a Screen Object
+
+You typically create a `Screen` object like this:
+
+```python
+import turtle
+
+screen = turtle.Screen() # Create the Screen object
+```
+
+## 1. Window Control & Setup Methods
+These methods are used to configure the size, position, title, and background of the drawing window.
+
+| Method                       | Description                                                                 | Example                                     |
+| :--------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `setup(width=0.5, height=0.75, startx=None, starty=None)` | Sets the size and position of the main window. `width`/`height` can be pixels or screen fractions. | `screen.setup(width=800, height=600)`       |
+| `screensize(canvwidth=400, canvheight=300, bg=None)` | Sets the size of the canvas (the drawable area) within the window.      | `screen.screensize(canvwidth=1000, canvheight=800)` |
+| `title(titlestring)`         | Sets the title that appears in the window's title bar.                      | `screen.title("My Turtle Art")`             |
+| `bgcolor(colorstring)`       | Sets the background color of the drawing canvas.                            | `screen.bgcolor("lightblue")`               |
+| `bgpic(image_name)`          | Sets a background image for the canvas. `image_name` should be a GIF file.  | `screen.bgpic("background.gif")`            |
+| `clear()`                    | Deletes all drawings and all turtles from the screen. Resets to initial state. | `screen.clear()`                            |
+| `reset()`                    | Similar to `clear()`, but also resets all screen settings to default.       | `screen.reset()`                            |
+| `bye()`                      | Shuts down the turtle graphics window. Preferred for clean exit.            | `screen.bye()`                              |
+| `exitonclick()`              | Keeps the window open until the user clicks on it, then closes it.          | `screen.exitonclick()`                      |
+| `mainloop()` / `done()`      | Starts the event loop; keeps the window open and responsive to events.      | `screen.mainloop()`                         |
+
+
+## 2. Animation Control Methods
+These methods manage how drawing updates are displayed on the screen.
+
+| Method                               | Description                                                                 | Example                                     |
+| :----------------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `tracer(n=None, delay=None)`         | Turns animation on/off (`n=0` for off) and sets update frequency.           | `screen.tracer(0)` (turn off animation)     |
+| `update()`                           | Performs a screen update if `tracer(0)` was set. Crucial for instant display. | `screen.update()`                           |
+| `delay(delay=10)`                    | Sets the delay in milliseconds between each turtle step (when tracer is on). | `screen.delay(50)`                          |
+
+## 3. Event Handling Methods
+These methods allow the screen to respond to user interactions like keyboard presses or mouse clicks.
+
+| Method                       | Description                                                                 | Example                                     |
+| :--------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `listen(xdummy=None, ydummy=None)` | Sets the focus on the turtle window for keyboard events. Must be called.    | `screen.listen()`                           |
+| `onkey(fun, key)`            | Binds a function `fun` to a key press event. `key` is a string (e.g., `"space"`, `"Up"`, `"a"`). | `screen.onkey(move_forward, "Up")`          |
+| `onkeypress(fun, key)`       | Similar to `onkey`, but `fun` is called repeatedly while `key` is pressed.  | `screen.onkeypress(rotate_left, "Left")`    |
+| `onclick(fun, btn=1, add=None)` | Binds a function `fun` to a mouse click on the screen. `btn` (1=left, 2=middle, 3=right). | `screen.onclick(draw_at_click)`             |
+| `ontimer(fun, t=0)`          | Installs a timer that calls `fun` after `t` milliseconds.                   | `screen.ontimer(game_loop, 100)`            |
+
+
+## 4. Coordinate System & Color Methods
+These methods control the coordinate system and how colors are interpreted.
+
+| Method                       | Description                                                                 | Example                                     |
+| :--------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `setworldcoordinates(llx, lly, urx, ury)` | Sets up a user-defined coordinate system for the screen.                    | `screen.setworldcoordinates(-1, -1, 1, 1)`  |
+| `colormode(cmode=None)`      | Sets the color mode (`1.0` for 0.0-1.0 RGB floats, `255` for 0-255 integers/names). | `screen.colormode(255)`                     |
+| `mode(mode=None)`            | Sets the turtle mode (`"standard"`, `"logo"`, `"world"`).                   | `screen.mode("logo")`                       |
+
+
+## 5. Input & Query Methods
+These methods allow getting input from the user or querying screen properties.
+
+| Method                       | Description                                                                 | Example                                     |
+| :--------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `numinput(title, prompt, default=None, minval=None, maxval=None)` | Pops up a dialog window to get a numeric input from the user.             | `age = screen.numinput("Age", "How old are you?", 18, 0, 120)` |
+| `textinput(title, prompt)`   | Pops up a dialog window to get a string input from the user.                | `name = screen.textinput("Name", "What's your name?")` |
+| `window_width()`             | Returns the current width of the window in pixels.                          | `width = screen.window_width()`             |
+| `window_height()`            | Returns the current height of the window in pixels.                         | `height = screen.window_height()`           |
+| `turtles()`                  | Returns a list of all `turtle.Turtle` objects currently on this screen.     | `all_turtles = screen.turtles()`            |
+
+
+## Example Usage:
+```python
+import turtle
+
+# Create the Screen object
+screen = turtle.Screen()
+
+# 1. Window Control & Setup
+screen.setup(width=700, height=500)
+screen.title("Screen Methods in Action")
+screen.colormode(255) # Set color mode for names/hex
+screen.bgcolor("#3399FF") # A nice blue background
+
+# 2. Animation Control
+screen.tracer(0) # Turn off automatic updates for faster drawing
+
+# Create a turtle
+my_turtle = turtle.Turtle()
+my_turtle.speed(0) # Max speed
+my_turtle.color("yellow")
+
+# Draw something quickly
+for i in range(100):
+    my_turtle.forward(i)
+    my_turtle.left(91)
+
+screen.update() # Update the screen to show all drawing at once
+
+# 3. Event Handling
+def handle_space_key():
+    my_turtle.clear() # Clear drawing
+    my_turtle.penup()
+    my_turtle.goto(random.randint(-200, 200), random.randint(-200, 200))
+    my_turtle.pendown()
+    my_turtle.write("Pressed Space!", align="center", font=("Arial", 16, "normal"))
+
+import random # Need random for the example
+
+screen.listen() # Listen for keyboard events
+screen.onkey(handle_space_key, "space") # Bind space key to function
+
+# 4. Input & Query
+user_name = screen.textinput("User Input", "Enter your name:")
+if user_name:
+    my_turtle.penup()
+    my_turtle.goto(0, -150)
+    my_turtle.pencolor("white")
+    my_turtle.write(f"Hello, {user_name}!", align="center", font=("Arial", 18, "bold"))
+    screen.update() # Update again for the text
+
+print(f"Window dimensions: {screen.window_width()}x{screen.window_height()}")
+
+
+# Keep the window open until clicked
+screen.exitonclick()
+```
+
+-------------------------------------------------------------
+# Turtle class :
 ## 1. Motion Methods
 These methods control how the turtle moves on the screen.
 
