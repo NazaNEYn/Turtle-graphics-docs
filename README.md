@@ -47,3 +47,81 @@ These methods determine how the lines are drawn by the turtle.
 | `clear()`                              | Deletes the turtle's drawings from the screen, but doesn't move the turtle. | `my_turtle.clear()`                         |
 | `reset()`                              | Clears drawings, resets turtle to home, and restores default properties.    | `my_turtle.reset()`                         |
 
+
+## 3. Turtle Appearance Methods
+These methods change how the turtle cursor itself looks or behaves.
+
+| Method                       | Description                                                                 | Example                                     |
+| :--------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `shape(name)`                | Sets the shape of the turtle cursor (`"arrow"`, `"turtle"`, `"circle"`, `"square"`, `"triangle"`, `"classic"`). | `my_turtle.shape("turtle")`                 |
+| `speed(speed)`               | Sets the drawing speed (0=fastest, 1=slowest, 10=fastest).                  | `my_turtle.speed(0)`                        |
+| `hideturtle()` / `ht()`      | Makes the turtle cursor invisible.                                          | `my_turtle.hideturtle()`                    |
+| `showturtle()` / `st()`      | Makes the turtle cursor visible.                                            | `my_turtle.showturtle()`                    |
+| `stamp()`                    | Leaves a copy of the turtle's shape at the current position. Returns a stamp ID. | `stamp_id = my_turtle.stamp()`              |
+| `clearstamp(stampid)`        | Deletes the stamp with the given `stampid`.                                 | `my_turtle.clearstamp(stamp_id)`            |
+
+
+## 4. Drawing State / Query Methods
+These methods allow you to get information about the turtle's current state.
+
+| Method                       | Description                                                                 | Example                                     |
+| :--------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `pos()` / `position()`       | Returns the turtle's current `(x, y)` coordinates.                          | `current_pos = my_turtle.pos()`             |
+| `xcor()`                     | Returns the turtle's current x-coordinate.                                  | `x = my_turtle.xcor()`                      |
+| `ycor()`                     | Returns the turtle's current y-coordinate.                                  | `y = my_turtle.ycor()`                      |
+| `heading()`                  | Returns the turtle's current heading in degrees.                            | `current_heading = my_turtle.heading()`     |
+| `isdown()`                   | Returns `True` if the pen is down, `False` otherwise.                       | `if my_turtle.isdown(): print("Drawing")`  |
+
+
+## 5. Special Drawing Methods
+These methods draw specific elements at the turtle's position.
+
+| Method                                     | Description                                                                 | Example                                                                 |
+| :----------------------------------------- | :-------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
+| `dot(size=None, color=None)`               | Draws a circular dot at the turtle's current position.                      | `my_turtle.dot(10, "green")`                                            |
+| `write(arg, move=False, align="left", font=...)` | Writes text at the turtle's current position. `font` is a tuple `(name, size, type)`. | `my_turtle.write("Hello!", font=("Arial", 12, "bold"))`               |
+
+## 6. Event Handling Methods (Turtle-Specific)
+These methods allow the turtle object itself to respond to mouse events. (For keyboard events and screen clicks, use `screen` methods.)
+
+| Method                       | Description                                                                 | Example                                     |
+| :--------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
+| `onclick(fun, btn=1, add=None)` | Binds a function `fun` to a mouse click event *on the turtle*.             | `my_turtle.onclick(on_turtle_click_func)`   |
+| `ondrag(fun, btn=1, add=None)` | Binds a function `fun` to when the turtle is dragged with the mouse.        | `my_turtle.ondrag(on_turtle_drag_func)`     |
+
+
+## Example Usage:
+```python
+import turtle
+
+screen = turtle.Screen()
+screen.colormode(255)
+screen.bgcolor("black")
+screen.title("Turtle Methods Demo")
+
+artist = turtle.Turtle()
+artist.shape("turtle")
+artist.speed(0)
+artist.pensize(2)
+artist.pencolor("cyan")
+artist.fillcolor("purple")
+
+# Draw a filled square
+artist.penup()
+artist.goto(-100, 100)
+artist.pendown()
+artist.begin_fill()
+for _ in range(4):
+    artist.forward(150)
+    artist.right(90)
+artist.end_fill()
+
+# Write some text
+artist.penup()
+artist.goto(0, 180)
+artist.pencolor("yellow")
+artist.write("Python Turtle", align="center", font=("Verdana", 24, "bold"))
+
+# Keep the window open until clicked
+screen.exitonclick()
+```
