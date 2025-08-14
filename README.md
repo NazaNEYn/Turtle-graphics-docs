@@ -7,6 +7,9 @@ First, you need to create a `Screen` and a `Turtle` object:
 import turtle
 # from turtle import Turtle, Screen
 
+# screen = Screen()
+# screen.exitonclick()
+
 
 screen = turtle.Screen()
 screen.colormode(255) # Good practice for consistent color handling (0-255 or color names)
