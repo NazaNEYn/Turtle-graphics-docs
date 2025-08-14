@@ -173,7 +173,9 @@ These methods control how the turtle moves on the screen.
 
 
 ## 2. Pen Control Methods
-These methods determine how the lines are drawn by the turtle.
+These methods determine how the lines are drawn by the turtle.<br>
+[Turtle Colors](https://cs111.wellesley.edu/reference/colors)
+
 
 | Method                                 | Description                                                                 | Example                                     |
 | :------------------------------------- | :-------------------------------------------------------------------------- | :------------------------------------------ |
