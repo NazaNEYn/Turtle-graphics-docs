@@ -5,6 +5,8 @@ The turtle.Turtle object is the "artist" that draws on the turtle.Screen canvas.
 First, you need to create a `Screen` and a `Turtle` object:
 ```python
 import turtle
+# from turtle import Turtle, Screen
+
 
 screen = turtle.Screen()
 screen.colormode(255) # Good practice for consistent color handling (0-255 or color names)
