@@ -73,6 +73,22 @@ These methods allow the screen to respond to user interactions like keyboard pre
 | `onclick(fun, btn=1, add=None)` | Binds a function `fun` to a mouse click on the screen. `btn` (1=left, 2=middle, 3=right). | `screen.onclick(draw_at_click)`             |
 | `ontimer(fun, t=0)`          | Installs a timer that calls `fun` after `t` milliseconds.                   | `screen.ontimer(game_loop, 100)`            |
 
+# Turtle Graphics Event Listeners 
+
+Event listeners are a way to make your `turtle` program interactive. They "listen" for user actions like mouse clicks or key presses and then automatically run a function you've specified.
+
+***
+
+| Event Type | Event Listener Method | Description |
+|---|---|---|
+| Mouse Events | `screen.onclick(fun, btn=1)` | Binds a function to a mouse click on the screen. The function receives the `x` and `y` coordinates of the click. |
+| | `screen.onrelease(fun, btn=1)` | Binds a function to a mouse button release on the screen. |
+| | `screen.ondrag(fun)` | Binds a function to a mouse motion while a button is held down. |
+| Keyboard Events | `screen.onkey(fun, key)` | Binds a function to a key press and release. Requires `screen.listen()`. |
+| | `screen.onkeypress(fun, key)` | Binds a function to a key press down. |
+| | `screen.onkeyrelease(fun, key)` | Binds a function to a key release. |
+| Timer Events | `screen.ontimer(fun, t=0)` | Schedules a function to be called after a time delay in milliseconds. |
+
 
 ## 4. Coordinate System & Color Methods
 These methods control the coordinate system and how colors are interpreted.
