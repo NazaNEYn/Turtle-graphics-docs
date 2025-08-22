@@ -249,6 +249,17 @@ These methods allow the turtle object itself to respond to mouse events. (For ke
 | `ondrag(fun, btn=1, add=None)` | Binds a function `fun` to when the turtle is dragged with the mouse.        | `my_turtle.ondrag(on_turtle_drag_func)`     |
 
 
+## 7. Measurement Methods
+
+| Method | Description | Example |
+| :--- | :--- | :--- |
+| `position()` / `pos()` | Returns the turtle's current `(x, y)` coordinates as a `Vec2D` tuple. | `my_turtle.position()` |
+| `xcor()` | Returns the turtle's current x-coordinate. | `my_turtle.xcor()` |
+| `ycor()` | Returns the turtle's current y-coordinate. | `my_turtle.ycor()` |
+| `heading()` | Returns the turtle's current heading (the direction it's facing in degrees). | `my_turtle.heading()` |
+| `distance(x, y)` | Returns the distance from the turtle's current position to the specified coordinates. | `my_turtle.distance(0, 0)` |
+
+
 ## Example Usage:
 ```python
 import turtle
