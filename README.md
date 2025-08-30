@@ -65,7 +65,7 @@ These methods manage how drawing updates are displayed on the screen.
 
 
 
-## A Simple Analogy for `screen.tracer(0)` and `screen.update()`
+### A Simple Analogy for `screen.tracer(0)` and `screen.update()`
 
 ### The Theater Analogy
 
@@ -80,6 +80,8 @@ You'd repeat this process in a **game loop** to create smooth, seamless animatio
 1.  **Pull the curtain down (`screen.tracer(0)`).**
 2.  **Move the actors (update your turtles' positions).**
 3.  **Pull the curtain up to show the new positions (`screen.update()`).**
+
+---
 
 
 ## 3. Event Handling Methods
